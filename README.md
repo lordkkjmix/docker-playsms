@@ -1,11 +1,11 @@
-docker-playsms
+docker-playsms-ngnix
 ==============
 
 Item            | Info
 --------------- | ---------------
 Project update  | 230922
 Project version | 2.3
-playSMS version | 1.4.6
+playSMS version | 1.4.7
 
 This project is playSMS docker image project.
 
@@ -19,13 +19,11 @@ Visit [playSMS](http://playsms.org) website for more information.
 Run this for installation, just the first time:
 
 ```
-docker run -d -p 2222:22 -p 80:80 playsms/playsms:1.4.6
+docker run -d -p 80:80 lordkkjmix/playsms:1.4.7
 ```
-	
-Or, run this to bind MySQL database with local `/opt/mysql/lib` instead:
 
 ```
-docker run -d -p 2222:22 -p 80:80 -v /opt/mysql/lib:/var/lib/mysql playsms/playsms:1.4.6
+docker run -d  -p 80:80 -v --env-file .env  lordkkjmix/playsms:1.4.7
 ```
 
 Get `<CONTAINER_ID>` of your image:
@@ -40,22 +38,11 @@ Follow logs:
 docker logs -f <CONTAINER_ID>
 ```
 
-Once `sshd` runs, change the default SSH password, enter container:
+Use `docker compose` runs:
 
 ```
-ssh -p 2222 root@localhost
+docker compose up
 ```
-
-And then change `root` password:
-
-```
-passwd root
-```
-
-Change the SSH password **immediately** to your own strong and secure password.
-
-The default SSH password for user `root` is `changemeplease`
-
 
 ## Usage
 
@@ -101,10 +88,11 @@ docker push yourname/playsms
 
 ## Maintainer
 
-- Anton Raharja <araharja@protonmail.com>
+- Kouakou koffi josué <lordkkjmix@gmail.com>
 
 
 ## References
 
 - https://github.com/tutumcloud/tutum-docker-lamp
 - https://github.com/tutumcloud/tutum-docker-wordpress
+- https://github.com/playsms/docker-playsms

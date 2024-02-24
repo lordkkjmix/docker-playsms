@@ -6,5 +6,5 @@ dependencies:
     - docker build -t playsms .
 test:
   override:
-    - docker run -d -p 10022:22 -p 10080:80 -p 13306:3306 playsms; sleep 30
+    - docker run -d 10080:80 playsms; sleep 30
     - curl --retry 10 --retry-delay 5 -L -I --insecure http://localhost:10080 | grep "200 OK"

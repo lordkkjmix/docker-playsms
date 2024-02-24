@@ -2,9 +2,6 @@
 
 VOLUME_HOME="/var/lib/mysql"
 
-sed -ri -e "s/^upload_max_filesize.*/upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}/" \
-    -e "s/^post_max_size.*/post_max_size = ${PHP_POST_MAX_SIZE}/" /etc/php/7.4/apache2/php.ini
-
 if [[ ! -d $VOLUME_HOME/mysql ]]; then
     echo "=> An empty or uninitialized MySQL volume is detected in $VOLUME_HOME"
     echo "=> Installing MySQL ..."
@@ -18,5 +15,7 @@ else
     echo "=> Using an existing volume of MySQL"
 fi
 
-echo "=> Exec supervisord"
-exec supervisord -n
+echo "=> Exec nginx"
+
+/start-nginx.sh
+/start-playsmsd.sh
