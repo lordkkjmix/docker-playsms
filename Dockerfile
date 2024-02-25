@@ -23,6 +23,7 @@ RUN rm -rf /var/www/html/*
 
 # Installation de playSMS
 ADD start-playsmsd.sh /start-playsmsd.sh
+ADD start.sh /start.sh
 ADD create_db.sh /create_db.sh
 RUN rm -rf /app && mkdir /app && git clone --branch 1.4.7 --depth=1 https://github.com/playsms/playsms.git /app
 ADD install.conf /app/install.conf
@@ -34,8 +35,8 @@ ENV PHP_UPLOAD_MAX_FILESIZE 8M
 ENV PHP_POST_MAX_SIZE 8M
 
 # Finalisation des scripts
+
 ADD run.sh /run.sh
-ADD start.sh /start.sh
 RUN chmod +x /*.sh
 
 
