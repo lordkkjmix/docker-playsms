@@ -35,6 +35,7 @@ ENV PHP_POST_MAX_SIZE 8M
 
 # Finalisation des scripts
 ADD run.sh /run.sh
+ADD start.sh /start.sh
 RUN chmod +x /*.sh
 
 
