@@ -13,6 +13,8 @@ if [[ ! -d $VOLUME_HOME/mysql ]]; then
     echo "=> Done!"
 else
     echo "=> Using an existing volume of MySQL"
+     /start.sh
+    echo "=> Done!"
 fi
 
 echo "=> Exec nginx"
